@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Friend’s Music Space</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .container {
+      margin-top: 30px;
+      background: rgba(255,255,255,0.8);
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #a6c1ee;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #7e9ed8;
+    }
+
+    iframe {
+      margin-top: 15px;
+      width: 100%;
+      height: 80px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    audio {
+      margin-top: 20px;
+      width: 100%;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌸 Welcome to Her Music Space 🎶</h1>
+
+  <div class="container">
+    <h2>Paste a Spotify Link</h2>
+    <input type="text" id="spotifyLink" placeholder="Enter Spotify track/playlist link here">
+    <button onclick="loadSpotify()">Load Music</button>
+    <div id="spotifyPlayer"></div>
+
+    <hr style="margin: 30px 0;">
+
+    <h2>Play Your Own Music</h2>
+    <input type="file" id="musicFile" accept="audio/*">
+    <audio id="audioPlayer" controls></audio>
+  </div>
+
+  <script>
+    // Load Spotify embed
+    function loadSpotify() {
+      const link = document.getElementById("spotifyLink").value;
+      const playerDiv = document.getElementById("spotifyPlayer");
+      
+      if (link.includes("spotify")) {
+        const embedLink = link.replace("open.spotify.com", "open.spotify.com/embed");
+        playerDiv.innerHTML = `<iframe src="${embedLink}" allowtransparency="true" allow="encrypted-media"></iframe>`;
+      } else {
+        alert("Please enter a valid Spotify link!");
+      }
+    }
+
+    // Play uploaded audio
+    const fileInput = document.getElementById("musicFile");
+    const audioPlayer = document.getElementById("audioPlayer");
+
+    fileInput.addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        audioPlayer.src = url;
+        audioPlayer.play();
+      }
+    });
+  </script>
+</body>
+</html>

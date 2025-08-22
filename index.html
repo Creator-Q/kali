@@ -125,22 +125,16 @@ Tere sang laagi jo preet re<br>
   <!-- Link Section -->
   <a href="https://open.spotify.com/playlist/2qUFLrvahWV9BQqnDtRB5r?si=4ilEg2uORHuROwsefGlIew&pi=hJ6cTVvGR7e8G" target="_blank">spotify playlist</a>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="my-song.mp3" type="audio/mpeg">
-    Your browser does not support the audio tag.
-  </audio>
-
-  <script>
-    // Autoplay try
-    window.addEventListener('load', () => {
-      const music = document.getElementById('bg-music');
-      music.play().catch(() => {
-        console.log("Autoplay blocked. User must click somewhere.");
-      });
-    });
-  </script>
+  <!-- Music Player (visible at bottom) -->
+    <div class="music-player">
+      <h2>🎵 Enjoy the Music 🎵</h2>
+      <audio controls>
+        <source src="my-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
 </body>
 </html>
+
 
 
 
